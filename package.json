@@ -16,5 +16,8 @@
   },
   "overrides": {
     "vite": "6.0.3"
+  },
+  "stackblitz": {
+    "startCommand": "npm test"
   }
 }
