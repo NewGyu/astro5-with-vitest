@@ -1,0 +1,27 @@
+name: 'Check when a PR is raised'
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  check_and_test_job:
+    runs-on: ubuntu-latest
+    name: Check and Test Job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Run lint
+        run: npm run lint
+      - name: Run test
+        run: npm run test -- --run
+      - name: Run build for checking
+        run: npm run build
